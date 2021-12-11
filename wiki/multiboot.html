@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Multiboot :: Modern OSDev Wiki</title>
+    <link rel="canonical" href="https://osdev.wiki/wiki/multiboot.html">
+    <meta name="generator" content="Antora 3.0.0-beta.5">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <script>var uiRootPath = '../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://osdev.wiki">Modern OSDev Wiki</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="wiki" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Modern OSDev Wiki</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">About This Wiki</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Introduction</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="time_travel.html"><strong>Modern OS Development</strong></a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Requirements</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Licensing</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Compiler Setup</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Bare Bones / Baby Steps</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="stivale_barebones.html">Stivale Barebones</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Stivale C# Barebones</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Consider Innovation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Kernel</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Kernel Models</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Monolithic Kernel</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Microkernel</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <span class="nav-text">Nanokernel</span>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <span class="nav-text">Picokernel</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Exokernel</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Kernel Modularity</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Higher-half Kernel</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tasking and Scheduling</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">What is a Task?</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Task vs. Process vs Thread</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Monotasking Systems</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Multitasking Systems</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Real-Time Systems</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Context Switching</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Preemption</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Scheduling Algorithms</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Resource Sharing</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Memory and Resource Management</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of Memory Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Paging</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Segmentation</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Memory Allocation</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Page Frame Allocation</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Memory Management Unit</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">File Systems</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Network Resource Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Queuing Algorithms</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Hardware</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Firmware</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="uefi.html">UEFI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="bios.html">BIOS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Architectures</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">x86</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Processor Modes</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Real Mode</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text">Unreal Mode</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Virtual 8086 Mode</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Protected Mode</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="long_mode.html">Long Mode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Interrupts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Interrupt Descriptor Table (IDT)</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Interrupt Service Routines (ISR)</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Advanced Programmable Interrupt Controller (APIC)</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Timing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Time Stamp Counter</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">High Performance Event Timer (HPET)</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">APIC Timer</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Programmable Interrupt Timer (PIT)</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">CMOS and RTC</span>
+  </li>
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text">Detecting CPU Speed</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="arm.html">ARM</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Video</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">UEFI Graphics Output Protocol</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">VESA BIOS Extensions Graphics</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Disks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">NVMe</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">AHCI</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Partitioning</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="gpt.html">GUID Partition Table (GPT)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Master Boot Record (MBR)</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Bootloaders</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Bootloader theory</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocols</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="stivale.html">Stivale</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="multiboot.html">Multiboot</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Implementations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="limine.html">Limine</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">GRUB</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Your Own Bootloader</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compilers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="calling_conventions.html">Calling Conventions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="clang.html">Clang</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cross_clang.html">clang Cross-Compiler</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="visual_studio.html">Visual Studio</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Assemblers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">LLVM (llvm-as)</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">NASM</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">FASM</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">YASM</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">GAS (GNU as)</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Linkers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">LLD (LLVM ld)</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">LD (GNU ld)</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Link Archiver (GNU ar)</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Virtualization and Emulation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">QEMU</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">VirtualBox</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">VMWare</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Hyper-V</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">KVM</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Disk Image Manipulation</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Modern OSDev Wiki</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Modern OSDev Wiki</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Modern OSDev Wiki</a></li>
+    <li>Tools</li>
+    <li>Bootloaders</li>
+    <li>Protocols</li>
+    <li><a href="multiboot.html">Multiboot</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/osdev-wiki/wiki/edit/main/wiki/modules/ROOT/pages/multiboot.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Multiboot</h1>
+
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
