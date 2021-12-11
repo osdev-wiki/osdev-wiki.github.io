@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://osdev.wiki/wiki/cross_clang.html">
     <meta name="description" content="Tutorial on how to setup cross-compilation for OS development using clang.">
     <meta name="keywords" content="compiler, clang, tutorial">
-    <meta name="generator" content="Antora 3.0.0-beta.5">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -515,7 +515,7 @@
     <li><a href="cross_clang.html">clang Cross-Compiler</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/osdev-wiki/wiki/edit/main/wiki/modules/ROOT/pages/cross_clang.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/osdev-wiki/wiki/edit/master/wiki/modules/ROOT/pages/cross_clang.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -527,7 +527,7 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <a href="https://en.wikipedia.org/wiki/Cross_compiler">cross compiler</a> is a compiler that runs on platform A (the <strong>host</strong>), but generates executable code for platform B (the <strong>target</strong>). The platforms do not need to but usually differ in CPU architecture, library environment, <a href="calling_conventions.html" class="xref page">ABI</a>, and/or <a href="executable_format.html" class="xref page">executable format</a>. For operating system development, the host is our development system, and the target is the developed OS. It is important to realize that these two platforms are not the same: the developed OS will always differ from the development OS. Thus it is necessary to use a cross compiler to avoid various troubles down the road.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Cross_compiler">cross compiler</a> is a compiler that runs on platform A (the <strong>host</strong>), but generates executable code for platform B (the <strong>target</strong>). The platforms do not need to but usually differ in CPU architecture, library environment, <a href="calling_conventions.html" class="page">ABI</a>, and/or <a href="executable_format.html" class="page">executable format</a>. For operating system development, the host is our development system, and the target is the developed OS. It is important to realize that these two platforms are not the same: the developed OS will always differ from the development OS. Thus it is necessary to use a cross compiler to avoid various troubles down the road.</p>
 </div>
 </div>
 </div>
@@ -535,7 +535,7 @@
 <h2 id="_why_is_cross_compilation_necessary"><a class="anchor" href="#_why_is_cross_compilation_necessary"></a>Why is cross-compilation necessary?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Unless development is being done on your developed OS, a cross compiler is necessary. The compiler must know the correct target platform, otherwise there will be issues, if not now then later. If the system compiler is used, it will not know that it is not targeting your host OS: it compiling something else entirely. Some tutorials suggest using the system compiler, and passing it several options to tell it that it&#8217;s not targetting the host. This is not sustainable in the long run and the real solution is to use a cross-compiler. Further argumentation for using a cross compiler, if this wasn&#8217;t convincing enough, can be found in the article <a href="why_cross_compile.html" class="xref page">Why cross-compile?</a></p>
+<p>Unless development is being done on your developed OS, a cross compiler is necessary. The compiler must know the correct target platform, otherwise there will be issues, if not now then later. If the system compiler is used, it will not know that it is not targeting your host OS: it compiling something else entirely. Some tutorials suggest using the system compiler, and passing it several options to tell it that it&#8217;s not targetting the host. This is not sustainable in the long run and the real solution is to use a cross-compiler. Further argumentation for using a cross compiler, if this wasn&#8217;t convincing enough, can be found in the article <a href="why_cross_compile.html" class="page">Why cross-compile?</a></p>
 </div>
 </div>
 </div>
@@ -543,7 +543,7 @@
 <h2 id="_what_is_clang"><a class="anchor" href="#_what_is_clang"></a>What is clang?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As an operating system developer in the 2020s, <a href="time_travel.html" class="xref page">newer technologies</a> have been developed that not only simplify the development process, but are of higher quality and are more powerful than what was used before. One of these technologies is <a href="https://llvm.org">LLVM</a>. Basically all osdev guides, including the original <a href="https://wiki.osdev.org">osdev.org wiki</a> instruct the developer to use GCC. Using LLVM+clang makes the life of an OS developer easier. Unlike the horribly dated GNU Compiler Collection, this compiler was designed to cross-compile in its <a href="https://en.wikipedia.org/wiki/LLVM">inception</a>, and thus it is not neccessary to build an entire toolchain from scratch for each desired target platform. There are several other benefits to using clang over GCC, but for OS developers, this is the main one. It is the industry-standard cross-platform compiler: using clang allows OS development to take place on Windows without requiring the use of emulation/compatibility layers like MSYS or Cygwin, or locking down the build system to MSVC. It is also the native compiler on BSD and Mac OS X systems. The error messages are more accurate and informational. See <a href="clang.html" class="xref page">Clang</a> for more on why OS development should be done using LLVM.</p>
+<p>As an operating system developer in the 2020s, <a href="time_travel.html" class="page">newer technologies</a> have been developed that not only simplify the development process, but are of higher quality and are more powerful than what was used before. One of these technologies is <a href="https://llvm.org">LLVM</a>. Basically all osdev guides, including the original <a href="https://wiki.osdev.org">osdev.org wiki</a> instruct the developer to use GCC. Using LLVM+clang makes the life of an OS developer easier. Unlike the horribly dated GNU Compiler Collection, this compiler was designed to cross-compile in its <a href="https://en.wikipedia.org/wiki/LLVM">inception</a>, and thus it is not neccessary to build an entire toolchain from scratch for each desired target platform. There are several other benefits to using clang over GCC, but for OS developers, this is the main one. It is the industry-standard cross-platform compiler: using clang allows OS development to take place on Windows without requiring the use of emulation/compatibility layers like MSYS or Cygwin, or locking down the build system to MSVC. It is also the native compiler on BSD and Mac OS X systems. The error messages are more accurate and informational. See <a href="clang.html" class="page">Clang</a> for more on why OS development should be done using LLVM.</p>
 </div>
 </div>
 </div>
@@ -551,7 +551,7 @@
 <h2 id="_targets"><a class="anchor" href="#_targets"></a>Targets</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cross compilation is done using a <a href="target_triplet.html" class="xref page">Target Triplet</a>, which conveys information to the compiler about the platform that is being compiled to.</p>
+<p>Cross compilation is done using a <a href="target_triplet.html" class="page">Target Triplet</a>, which conveys information to the compiler about the platform that is being compiled to.</p>
 </div>
 </div>
 </div>
@@ -580,7 +580,7 @@
 <div class="sect2">
 <h3 id="_windows"><a class="anchor" href="#_windows"></a>Windows</h3>
 <div class="paragraph">
-<p>If <a href="visual_studio.html" class="xref page">Visual Studio</a> with the "Desktop Development with C++" toolset is installed, clang can be installed as an individual component through the Visual Studio Installer. See <a href="https://docs.microsoft.com/en-us/cpp/build/clang-support-msbuild?view=msvc-170">Clang/LLVM support in Visual Studio</a>.as</p>
+<p>If <a href="visual_studio.html" class="page">Visual Studio</a> with the "Desktop Development with C++" toolset is installed, clang can be installed as an individual component through the Visual Studio Installer. See <a href="https://docs.microsoft.com/en-us/cpp/build/clang-support-msbuild?view=msvc-170">Clang/LLVM support in Visual Studio</a>.as</p>
 </div>
 <div class="paragraph">
 <p>If Visual Studio is not desired or installed, the latest release of clang can be installed from the <a href="https://github.com/llvm/llvm-project/releases">LLVM GitHub release page</a>.</p>
