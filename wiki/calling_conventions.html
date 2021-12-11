@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Calling Conventions :: Modern OSDev Wiki</title>
+    <title>Calling Conventions :: New OSDev Wiki</title>
     <link rel="canonical" href="https://osdev.wiki/wiki/calling_conventions.html">
     <meta name="description" content="Examples of calling conventions on common platforms">
     <meta name="keywords" content="assembly, x86, x64, sysv, msvc">
@@ -15,7 +15,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://osdev.wiki">Modern OSDev Wiki</a>
+      <a class="navbar-item" href="https://osdev.wiki">New OSDev Wiki</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -547,7 +547,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_x86_64_calling_conventions"><a class="anchor" href="#_x86_64_calling_conventions"></a>x86_64 calling conventions</h2>
+<h2 id="_x86_64_calling_conventions"><a class="anchor" href="#_x86_64_calling_conventions"></a>x86-64 calling conventions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Windows (including UEFI) world and the UNIX (Linux, macOS, BSDs) world have adopted two different conventions. Note that MSVC can only generate code using the Windows calling convention.</p>
@@ -584,23 +584,17 @@
 </div>
 <div class="sect3">
 <h4 id="_register_allocation"><a class="anchor" href="#_register_allocation"></a>Register allocation</h4>
-<div class="sect4">
-<h5 id="_caller_saved"><a class="anchor" href="#_caller_saved"></a>Caller-saved</h5>
 <div class="paragraph">
-<p>RAX, RCX, RDX,  R8, R9, R10, R11</p>
+<p>Caller-saved: RAX, RCX, RDX,  R8, R9, R10, R11</p>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_callee_saved"><a class="anchor" href="#_callee_saved"></a>Callee-saved</h5>
 <div class="paragraph">
-<p>RBX, RBP, RDI, RSI, RSP, R12, R13, R14, R15</p>
-</div>
+<p>Callee-saved: RBX, RBP, RDI, RSI, RSP, R12, R13, R14, R15</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_stack"><a class="anchor" href="#_stack"></a>Stack</h4>
 <div class="paragraph">
-<p>The stack is always 16-byte aligned at function entry: this requires the stack to be <strong>NOT</strong> aligned to 16 bytes before the <code>CALL</code>, since the instruction pushes 8 bytes on the stack.</p>
+<p>The stack is always 16-byte aligned at function <strong>entry</strong>: this requires the stack to be <strong>NOT</strong> aligned to 16 bytes before the <code>CALL</code>, since the instruction pushes 8 bytes on the stack.</p>
 </div>
 <div class="paragraph">
 <p>All functions need to have 32 bytes of home space (also known as spill space or shadow space), which is allocated <strong>before</strong> pushing the other parameters on the stack. This allows for an easier implementation of variadic functions: <code>va_start</code> can just put the four register parameters in the home space such that <code>va_arg</code> simply becomes a lookup starting at RSP.</p>
@@ -632,21 +626,80 @@
 <p>If the return value is an integer/struct/union whose size is less than or equal than 64 bits, it&#8217;s returned in RAX; otherwise, the struct is allocated by the caller and a pointer to it is passed as the first parameter.</p>
 </div>
 <div class="paragraph">
-<p><code>LargeStruct DoSomething(int a)</code> actually becomes <code>void DoSomething(LargeStruct *ret, int a)</code>.</p>
+<p><code>LargeStruct DoSomething(int a)</code>
+actually becomes
+<code>void DoSomething(LargeStruct *ret, int a)</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_system_v"><a class="anchor" href="#_system_v"></a>System V</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Parameters: RDI, RSI, RDX, RCX, R8, R9, stack</p>
-</li>
-</ul>
+<h3 id="_system_v2"><a class="anchor" href="#_system_v2"></a>System V<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The standard calling sequence requirements apply only to global functions. Local functions that are not reachable from other compilation units may use different conventions. Nevertheless, it is recommended that all functions use the standard calling sequence when possible.</p>
+</div>
+</blockquote>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The CPU shall be in x87 mode upon entry to a function. Therefore, every function that uses the MMX registers is required to issue an EMMS or FEMMS instruction after using MMX registers, before returning or calling another function.</p>
+</div>
+</blockquote>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The direction flag DF in the RFLAGS register must be clear (set to “forward” direction) on function entry and return. Other user flags have no specified role in the standard calling sequence and are not preserved across calls.</p>
+</div>
+</blockquote>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Registers RBP, RBX and
+R12 through R15 “belong” to the calling function and the called function is required to preserve their values. In other words, a called function must preserve these registers’ values for its caller. Remaining registers “belong” to the called function.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect3">
+<h4 id="_register_allocation_2"><a class="anchor" href="#_register_allocation_2"></a>Register allocation</h4>
+<div class="paragraph">
+<p>Caller-saved: RAX, RCX, RDX, RDI, RSI, R8, R9, R10, R11</p>
 </div>
 <div class="paragraph">
-<p>TODO:</p>
+<p>Callee-saved: RBX, RBP, RSP R12, R13, R14, R15</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_stack_2"><a class="anchor" href="#_stack_2"></a>Stack</h4>
+<div class="paragraph">
+<p>The stack is always 16-byte aligned at function <strong>call</strong>: this requires the stack to be aligned to 16 bytes before the <code>CALL</code>. The push of the return address onto the stack by <code>CALL</code> is immediately succeeded by the push of RBP onto the stack by the callee function, thereby re-aligning the stack shortly after function entry.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h4>
+<div class="paragraph">
+<p><code>RDI</code>, <code>RSI</code>, <code>RDX</code>, <code>RCX</code>, <code>R8</code>, <code>R9</code>, stack (<code>[RSP+0x00]</code>, <code>[RSP+0x08]</code> and so on).</p>
+</div>
+<div class="paragraph">
+<p>If the parameter is of type <code>float</code> or <code>double</code>, it will be stored in the next available SSE register (<code>XMM0</code>-<code>XMM7</code>).</p>
+</div>
+<div class="paragraph">
+<p>For example, a function with the prototype <code>void DoSomething(int a, float b, int c, int d, int e, float f)</code> would pass parameters in <code>RDI</code>, <code>XMM0</code>, <code>R8</code>, <code>R9</code>, <code>[RSP+0x00]</code> and <code>XMM1</code> respectively. A function calling this needs to have at least 32 bytes of stack to store the parameters and align the stack upon call.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_return_value_2"><a class="anchor" href="#_return_value_2"></a>Return value</h4>
+<div class="paragraph">
+<p>If the return value is an integer/struct/union whose size is less than or equal than 64 bits, it&#8217;s returned in <code>RAX</code>; otherwise, the struct is allocated by the caller and a pointer to it is passed as the first parameter, similarly to the Microsoft x64 ABI. Dissimilarly, the pointer is actually returned in <code>RAX</code> upon return.</p>
+</div>
+<div class="paragraph">
+<p><code>LargeStruct DoSomething(int a)</code>
+actually becomes
+<code>LargeStruct* DoSomething(LargeStruct *ret, int a)</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -659,6 +712,9 @@
 <hr>
 <div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. <a href="https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/x64-calling-convention.md" class="bare">https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/x64-calling-convention.md</a>
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf" class="bare">https://raw.githubusercontent.com/wiki/hjl-tools/x86-psABI/x86-64-psABI-1.0.pdf</a>
 </div>
 </div>
 </article>
