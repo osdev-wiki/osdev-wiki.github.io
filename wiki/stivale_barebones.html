@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://osdev.wiki/wiki/stivale_barebones.html">
     <meta name="description" content="A tutorial on how to write a minimal kernel using a stivale2-compliant bootloader.">
     <meta name="keywords" content="tutorial, kernel, barebones">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0-beta.5">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -514,7 +514,7 @@
     <li><a href="stivale_barebones.html">Stivale Barebones</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/osdev-wiki/wiki/edit/master/wiki/modules/ROOT/pages/stivale_barebones.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/osdev-wiki/wiki/edit/main/modules/ROOT/pages/stivale_barebones.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -528,7 +528,7 @@
 <div class="sect2">
 <h3 id="_what_is_stivale"><a class="anchor" href="#_what_is_stivale"></a>What is stivale?</h3>
 <div class="paragraph">
-<p><strong>stivale</strong> means "boot" in Italian. It is a boot protocol designed to overcome shortcomings of common boot protocols used by hobbyist OS developers, such as <a href="multiboot.html" class="page">Multiboot</a>.</p>
+<p><strong>stivale</strong> means "boot" in Italian. It is a boot protocol designed to overcome shortcomings of common boot protocols used by hobbyist OS developers, such as <a href="multiboot.html" class="xref page">Multiboot</a>.</p>
 </div>
 <div class="paragraph">
 <p>There are actually 2 revisions of the stivale boot protocol, namely: <strong>stivale</strong>, and <strong>stivale2</strong>. The earlier stivale revision (simply "stivale", but for clarity we are going to call it "stivale1" from now on), is a very simple <a href="https://en.wikipedia.org/wiki/KISS_principle">"KISS"</a> boot protocol only supporting what was deemed necessary at the time, but versioning and expandability issues made creating stivale2 a necessity. stivale2 makes use of tags for bootloader writers' and kernel writers' convenience, and to make future expandability and revisioning easier.</p>
@@ -546,10 +546,10 @@ stivale1 is deprecated and should be avoided for new kernels.
 </table>
 </div>
 <div class="paragraph">
-<p>stivale is firmware and architecture agnostic, though the only bootloader fully supporting the stivale protocols as of writing this article (2021/01/09) is <a href="limine.html" class="page">Limine</a>, which is an x86/x86_64 <a href="bios.html" class="page">BIOS</a> and <a href="uefi.html" class="page">UEFI</a> bootloader, with <a href="https://github.com/TomatOrg/TomatBoot">TomatBoot</a> (now archived) and <a href="https://github.com/FlorenceOS/Sabaton">Sabaton</a> offering limited stivale compliance for <a href="uefi.html#x86" class="page">x86_64 UEFI</a> exclusively, and <a href="arm.html#AArch64" class="page">aarch64</a>, respectively.</p>
+<p>stivale is firmware and architecture agnostic, though the only bootloader fully supporting the stivale protocols as of writing this article (2021/01/09) is <a href="limine.html" class="xref page">Limine</a>, which is an x86/x86_64 <a href="bios.html" class="xref page">BIOS</a> and <a href="uefi.html" class="xref page">UEFI</a> bootloader, with <a href="https://github.com/TomatOrg/TomatBoot">TomatBoot</a> (now archived) and <a href="https://github.com/FlorenceOS/Sabaton">Sabaton</a> offering limited stivale compliance for <a href="uefi.html#x86" class="xref page">x86_64 UEFI</a> exclusively, and <a href="arm.html#AArch64" class="xref page">aarch64</a>, respectively.</p>
 </div>
 <div class="paragraph">
-<p>This article will demonstrate how to write a small 64-bit higher-half stivale2 kernel in (GNU) C, and boot it using the <a href="limine.html" class="page">Limine</a> bootloader.</p>
+<p>This article will demonstrate how to write a small 64-bit higher-half stivale2 kernel in (GNU) C, and boot it using the <a href="limine.html" class="xref page">Limine</a> bootloader.</p>
 </div>
 <div class="paragraph">
 <p>It is also recommended to check out <a href="https://github.com/limine-bootloader/limine-barebones">this</a> project as it provides example buildable code to go along with this tutorial.</p>
@@ -576,7 +576,7 @@ stivale1 is deprecated and should be avoided for new kernels.
 </ul>
 </div>
 <div class="paragraph">
-<p>As one may notice, there is no "entry point" assembly stub, as one is not necessary with either stivale1 or 2, when using a language which can make use of a standard System V x86 <a href="calling_conventions.html" class="page">calling convention</a>.</p>
+<p>As one may notice, there is no "entry point" assembly stub, as one is not necessary with either stivale1 or 2, when using a language which can make use of a standard System V x86 <a href="calling_conventions.html" class="xref page">calling convention</a>.</p>
 </div>
 <div class="paragraph">
 <p>Furthermore, we will download the header file <code>stivale2.h</code> which defines structures that we will use to interact with the bootloader from <a href="https://raw.githubusercontent.com/stivale/stivale/master/stivale2.h">here</a>, and place it in the same directory as the other files.</p>
@@ -905,14 +905,14 @@ KERNEL_PATH=boot:///myos.elf</code></pre>
 <div class="sect3">
 <h4 id="_creating_the_image"><a class="anchor" href="#_creating_the_image"></a>Creating the image</h4>
 <div class="paragraph">
-<p>We can now create either an ISO or a hard disk/USB drive image with our kernel on it. <a href="limine.html" class="page">Limine</a> can boot on both <a href="bios.html" class="page">BIOS</a> and <a href="uefi.html" class="page">UEFI</a> if the image is set up to do so, which is what we are going to do.</p>
+<p>We can now create either an ISO or a hard disk/USB drive image with our kernel on it. <a href="limine.html" class="xref page">Limine</a> can boot on both <a href="bios.html" class="xref page">BIOS</a> and <a href="uefi.html" class="xref page">UEFI</a> if the image is set up to do so, which is what we are going to do.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_creating_an_iso"><a class="anchor" href="#_creating_an_iso"></a>Creating an ISO</h3>
 <div class="paragraph">
-<p>In this example we are going to create a CD-ROM ISO capable of booting on both <a href="uefi.html" class="page">UEFI</a> and legacy <a href="bios.html" class="page">BIOS</a> systems.</p>
+<p>In this example we are going to create a CD-ROM ISO capable of booting on both <a href="uefi.html" class="xref page">UEFI</a> and legacy <a href="bios.html" class="xref page">BIOS</a> systems.</p>
 </div>
 <div class="paragraph">
 <p>For this to work, we will need the <strong>xorriso</strong> utility.</p>
@@ -950,7 +950,7 @@ xorriso -as mkisofs -b limine-cd.bin \
 <div class="sect2">
 <h3 id="_creating_a_hard_diskusb_drive_image"><a class="anchor" href="#_creating_a_hard_diskusb_drive_image"></a>Creating a hard disk/USB drive image</h3>
 <div class="paragraph">
-<p>In this example we&#8217;ll create a <a href="gpt.html" class="page">GPT</a> partition table using <strong>parted</strong>, containing a single FAT partition, also known as the <a href="uefi.html#ESP" class="page">ESP</a> in EFI terminology, which will store our kernel, configs, and bootloader.</p>
+<p>In this example we&#8217;ll create a <a href="gpt.html" class="xref page">GPT</a> partition table using <strong>parted</strong>, containing a single FAT partition, also known as the <a href="uefi.html#ESP" class="xref page">ESP</a> in EFI terminology, which will store our kernel, configs, and bootloader.</p>
 </div>
 <div class="paragraph">
 <p>This example is more involved and is made up of more steps than creating an ISO image.</p>
