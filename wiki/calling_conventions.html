@@ -553,7 +553,7 @@
 <p>The Windows (including UEFI) world and the UNIX (Linux, macOS, BSDs) world have adopted two different conventions. Note that MSVC can only generate code using the Windows calling convention.</p>
 </div>
 <div class="sect2">
-<h3 id="_microsoft_x64"><a class="anchor" href="#_microsoft_x64"></a>Microsoft x64</h3>
+<h3 id="_microsoft_x641"><a class="anchor" href="#_microsoft_x641"></a>Microsoft x64<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -584,11 +584,17 @@
 </div>
 <div class="sect3">
 <h4 id="_register_allocation"><a class="anchor" href="#_register_allocation"></a>Register allocation</h4>
+<div class="sect4">
+<h5 id="_caller_saved"><a class="anchor" href="#_caller_saved"></a>Caller-saved</h5>
 <div class="paragraph">
-<p>Caller-saved: RAX, RCX, RDX, R8, R9, R10, R11</p>
+<p>RAX, RCX, RDX,  R8, R9, R10, R11</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_callee_saved"><a class="anchor" href="#_callee_saved"></a>Callee-saved</h5>
 <div class="paragraph">
-<p>Callee-saved: RBX, RBP, RDI, RSI, RSP, R12, R13, R14, R15</p>
+<p>RBX, RBP, RDI, RSI, RSP, R12, R13, R14, R15</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -597,7 +603,7 @@
 <p>The stack is always 16-byte aligned at function entry: this requires the stack to be <strong>NOT</strong> aligned to 16 bytes before the <code>CALL</code>, since the instruction pushes 8 bytes on the stack.</p>
 </div>
 <div class="paragraph">
-<p>All functions need to have 32 bytes of home space (also known as spill space or shadow space), which is allocated <strong>before</strong> pushing the other parameters on the stack. This allows for an easier implementation of variadic functions: va_start can just put the four register parameters in the home space such that va_arg simply becomes a lookup starting at RSP.</p>
+<p>All functions need to have 32 bytes of home space (also known as spill space or shadow space), which is allocated <strong>before</strong> pushing the other parameters on the stack. This allows for an easier implementation of variadic functions: <code>va_start</code> can just put the four register parameters in the home space such that <code>va_arg</code> simply becomes a lookup starting at RSP.</p>
 </div>
 <div class="paragraph">
 <p>For example, if the caller calls a function with 4 or 5 arguments, it needs to allocate 40 bytes of stack in order for the stack at the callee entry to be 48 bytes below the caller&#8217;s stack.</p>
@@ -609,7 +615,15 @@
 <p><code>RCX</code>/<code>XMM0</code>, <code>RDX</code>/<code>XMM1</code>, <code>R8</code>/<code>XMM2</code>, <code>R9</code>/<code>XMM3</code>, stack (<code>[RSP+0x20]</code>, <code>[RSP+0x28]</code> and so on, 0x20 is due to the home space being there).</p>
 </div>
 <div class="paragraph">
-<p>For example, a function with the prototype <code>void DoSomething(int a, float b, int c, int d, int e, float f)</code> would pass parameters in RCX, XMM1, R8, R9, [RSP+0x20] and [RSP+0x28] respectively. A function calling this needs to have at least 56 bytes of stack to store the parameters and home space and ensure that the stack is aligned after the <code>CALL</code>.</p>
+<p>For example, a function with the prototype</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c"> void DoSomething(int a, float b, int c, int d, int e, float f);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>would pass parameters in RCX, XMM1, R8, R9, [RSP+0x20] and [RSP+0x28] respectively. A function calling this needs to have at least 56 bytes of stack to store the parameters and home space and ensure that the stack is aligned after the <code>CALL</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -623,7 +637,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sysv"><a class="anchor" href="#_sysv"></a>SysV</h3>
+<h3 id="_system_v"><a class="anchor" href="#_system_v"></a>System V</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -636,11 +650,15 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_see_also"><a class="anchor" href="#_see_also"></a>See also</h3>
-<div class="paragraph">
-<p><a href="https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/x64-calling-convention.md" class="bare">https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/x64-calling-convention.md</a></p>
+<h3 id="_see_also"><a class="anchor" href="#_see_also"></a>See Also</h3>
+
 </div>
 </div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. <a href="https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/x64-calling-convention.md" class="bare">https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/x64-calling-convention.md</a>
 </div>
 </div>
 </article>
