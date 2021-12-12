@@ -234,10 +234,13 @@
     <span class="nav-text">Firmware</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="bios.html">BIOS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="uefi.html">UEFI</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="bios.html">BIOS</a>
+    <span class="nav-text">ACPI</span>
   </li>
 </ul>
   </li>
@@ -254,13 +257,10 @@
     <span class="nav-text">Processor Modes</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <button class="nav-item-toggle"></button>
     <span class="nav-text">Real Mode</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="5">
-    <span class="nav-text">Unreal Mode</span>
   </li>
-</ul>
+  <li class="nav-item" data-depth="4">
+    <span class="nav-text">Unreal Mode</span>
   </li>
   <li class="nav-item" data-depth="4">
     <span class="nav-text">Virtual 8086 Mode</span>
@@ -270,6 +270,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="long_mode.html">Long Mode</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <span class="nav-text">System Management Mode</span>
   </li>
 </ul>
   </li>
@@ -321,37 +324,61 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Video</span>
+    <span class="nav-text">Busses</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">UEFI Graphics Output Protocol</span>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Peripheral Component Interconnect (PCI)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">PCI Express (PCIe)</span>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">VESA BIOS Extensions Graphics</span>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Universal Serial Bus (USB)</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Extensible Host Controller Interface (XHCI)</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Enhanced Host Controller Interface (EHCI)</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Advanced Host Controller Interface (AHCI)</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">NVM Express (NVMe)</span>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Disks</span>
+    <span class="nav-text">Storage</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">NVMe</span>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">AHCI</span>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Partitioning</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="gpt.html">GUID Partition Table (GPT)</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <span class="nav-text">Master Boot Record (MBR)</span>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Video</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">VESA BIOS Extensions (VBE)</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">UEFI Graphics Output Protocol (GOP)</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Intel Graphics Technology</span>
   </li>
 </ul>
   </li>
@@ -366,7 +393,7 @@
     <span class="nav-text">Bootloaders</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Bootloader theory</span>
+    <span class="nav-text">Bootloader Theory</span>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -395,83 +422,83 @@
   </li>
 </ul>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Compilers</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="calling_conventions.html">Calling Conventions</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="clang.html">Clang</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="cross_clang.html">clang Cross-Compiler</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="visual_studio.html">Visual Studio</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Assemblers</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">LLVM (llvm-as)</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">NASM</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">FASM</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">YASM</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">GAS (GNU as)</span>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Linkers</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">LLD (LLVM ld)</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">LD (GNU ld)</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">Link Archiver (GNU ar)</span>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Virtualization and Emulation</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">QEMU</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">VirtualBox</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">VMWare</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">Hyper-V</span>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text">KVM</span>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -510,6 +537,7 @@
   <ul>
     <li><a href="index.html">Modern OSDev Wiki</a></li>
     <li>Tools</li>
+    <li>Bootloaders</li>
     <li>Compilers</li>
     <li><a href="visual_studio.html">Visual Studio</a></li>
   </ul>
