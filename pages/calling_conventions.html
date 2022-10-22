@@ -48,22 +48,22 @@
 <div class="paragraph">
 <p>A <strong>calling convention</strong> is the set of contracts that compiler-generated machine
 code respects and expects external functions to respect.
-The calling convention specifies, for example</p>
+Among other things, the calling convention specifies:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>how parameters are passed to functions</p>
+<p>how parameters are passed to functions;</p>
 </li>
 <li>
 <p>how the stack is handled and cleaned (for example if needs to be aligned at
-function entry)</p>
+function entry);</p>
 </li>
 <li>
-<p>how structures are going to be laid out in memory</p>
+<p>how structures are going to be laid out in memory;</p>
 </li>
 <li>
-<p>which registers need to be restored by the caller and which by the callee</p>
+<p>which registers need to be restored by the caller and which by the callee.</p>
 </li>
 </ul>
 </div>
@@ -74,8 +74,8 @@ function entry)</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Windows (including UEFI) world and the UNIX (Linux, macOS, BSDs) world have
-adopted two different conventions. Note that MSVC can only generate code using
-the Windows calling convention.</p>
+adopted two different conventions.
+Note that MSVC can only generate code using the Windows calling convention.</p>
 </div>
 <div class="sect2">
 <h3 id="_microsoft_x64">1.1. Microsoft x64</h3>
@@ -94,14 +94,14 @@ A single argument is never spread across multiple registers.</p>
 </div>
 <div class="paragraph">
 <p>The x87 register stack is unused.
-It may be used by the callee, but consider it volatile across function calls.
+It may be used by the callee, but is considered volatile across function calls.
 All floating point operations are done using the 16 XMM registers.</p>
 </div>
 <div class="paragraph">
-<p>Integer arguments are passed in registers RCX, RDX, R8, and R9. Floating point
+<p>Integer arguments are passed in registers RCX, RDX, R8, and R9; floating point
 arguments are passed in XMM0L, XMM1L, XMM2L, and XMM3L.
-16-byte arguments are passed by reference. Parameter passing is described in
-detail in Parameter passing.
+16-byte arguments are passed by reference.
+Parameter passing is described in detail in the parameter section.
 These registers, and RAX, R10, R11, XMM4, and XMM5, are considered volatile.</p>
 </div>
 <div class="sect3">
@@ -169,9 +169,9 @@ parameters and home space and ensure that the stack is aligned after the <code>C
 <div class="sect3">
 <h4 id="_return_value">1.1.4. Return value</h4>
 <div class="paragraph">
-<p>If the return value is an integer/struct/union whose size is less than or equal
-to 64 bits, it is returned in RAX; otherwise, the struct is allocated by the
-caller and a pointer to it is passed as the first parameter.</p>
+<p>If the return value is an integer, struct, or union whose size is less than or
+equal to 64 bits, it is returned in RAX; otherwise, the struct is allocated by
+the caller, and a pointer to it is passed as the first parameter.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -270,11 +270,11 @@ parameters and align the stack upon call.</p>
 <div class="sect3">
 <h4 id="_return_value_2">1.2.4. Return value</h4>
 <div class="paragraph">
-<p>If the return value is an integer/struct/union whose size is less than or equal
-than 64 bits, it is returned in <code>RAX</code>; otherwise, the struct is allocated by the
-caller and a pointer to it is passed as the first parameter, similarly to the
+<p>If the return value is an integer, struct, or union whose size is less than or
+equal than 64 bits, it is returned in <code>RAX</code>; otherwise, the struct is allocated
+by the caller and a pointer to it is passed as the first parameter, like the
 Microsoft x64 ABI.
-Dissimilarly, the pointer is actually returned in <code>RAX</code> upon return.</p>
+Unlike the Microsoft ABI, the pointer is actually returned in <code>RAX</code> upon return.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -320,7 +320,7 @@ Dissimilarly, the pointer is actually returned in <code>RAX</code> upon return.<
                 <a href="https://stork-search.net/">Stork</a> under the
                 Apache-2.0 license.
                 
-                <a href="https://github.com/osdev-wiki/wiki/blob/cf5c2f840fb97429f5f778119267d9acef6b593d/pages/calling_conventions.adoc">Source code</a>.
+                <a href="https://github.com/osdev-wiki/wiki/blob/fb70970fad59ae0e1d348804d826bff0801ea36a/pages/calling_conventions.adoc">Source code</a>.
                 
                 
             </footer>
