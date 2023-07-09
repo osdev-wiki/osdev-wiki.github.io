@@ -155,8 +155,8 @@ bytes below the caller’s stack.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><pre><span></span><span class="tok-w"> </span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">do_something</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">b</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">c</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">d</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">e</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">f</span><span class="tok-p">);</span><span class="tok-w"></span>
-</pre></td></tr></table></code></pre>
+<pre class="pygments highlight"><code data-lang="c"><div class="lineno"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><span class="tok-w"> </span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">do_something</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">b</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">c</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">d</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">e</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">f</span><span class="tok-p">);</span>
+</pre></div></td></tr></table></div></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -175,18 +175,18 @@ the caller, and a pointer to it is passed as the first parameter.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<pre class="pygments highlight"><code data-lang="c"><div class="lineno"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><pre><span></span><span class="tok-o">---</span><span class="tok-w"></span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="tok-o">---</span>
 <span class="tok-w"> </span><span class="tok-c1">// large_struct_t is larger than 64 bits, this:</span>
-<span class="tok-w"> </span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span><span class="tok-w"></span>
+<span class="tok-w"> </span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span>
 <span class="tok-w"> </span><span class="tok-c1">// effectively becomes this:</span>
-<span class="tok-w"> </span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">ret</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span><span class="tok-w"></span>
-<span class="tok-o">---</span><span class="tok-w"></span>
-</pre></td></tr></table></code></pre>
+<span class="tok-w"> </span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">ret</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span>
+<span class="tok-o">---</span>
+</pre></div></td></tr></table></div></code></pre>
 </div>
 </div>
 </div>
@@ -278,18 +278,18 @@ Unlike the Microsoft ABI, the pointer is actually returned in <code>RAX</code> u
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<pre class="pygments highlight"><code data-lang="c"><div class="lineno"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><pre><span></span><span class="tok-o">---</span><span class="tok-w"></span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><span class="tok-o">---</span>
 <span class="tok-w"> </span><span class="tok-c1">// large_struct_t is larger than 64 bits, this:</span>
-<span class="tok-w"> </span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span><span class="tok-w"></span>
+<span class="tok-w"> </span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span>
 <span class="tok-w"> </span><span class="tok-c1">// effectively becomes this:</span>
-<span class="tok-w"> </span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">ret</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span><span class="tok-w"></span>
-<span class="tok-o">---</span><span class="tok-w"></span>
-</pre></td></tr></table></code></pre>
+<span class="tok-w"> </span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-n">do_something</span><span class="tok-p">(</span><span class="tok-n">large_struct_t</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">ret</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">)</span>
+<span class="tok-o">---</span>
+</pre></div></td></tr></table></div></code></pre>
 </div>
 </div>
 </div>
@@ -320,7 +320,7 @@ Unlike the Microsoft ABI, the pointer is actually returned in <code>RAX</code> u
                 <a href="https://stork-search.net/">Stork</a> under the
                 Apache-2.0 license.
                 
-                <a href="https://github.com/osdev-wiki/wiki/blob/fb70970fad59ae0e1d348804d826bff0801ea36a/pages/calling_conventions.adoc">Source code</a>.
+                <a href="https://github.com/osdev-wiki/wiki/blob/30181e43cb85fd023bd1da5b0a230fed2b93a768/pages/calling_conventions.adoc">Source code</a>.
                 
                 
             </footer>
